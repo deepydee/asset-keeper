@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+
+            $table->foreignId('source_id')
+                ->constrained()
+                ->onDelete('set null');
+
+            $table->text('description')->nullable();
+
+            $table->timestamp('date');
             $table->timestamps();
         });
     }
