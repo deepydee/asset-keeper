@@ -58,7 +58,7 @@ class AssetController extends Controller
         }
 
         return view('assets.create', compact(
-            'sources',
+            'source',
             'workTime',
 
         ));

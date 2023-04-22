@@ -15,19 +15,20 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        //     'name' => 'Vitalii',
+        //     'email' => 'synthex@bk.ru',
+        //     'password' => bcrypt(config('app.admin_password')), // secret
+        //     'email_verified_at' => now(),
         // ]);
 
         $this->call([
             UserSeeder::class,
-            SettingsSeeder::class,
-            CategoriesSeeder::class,
-            LiabilitiesSeeder::class,
+            CategorySeeder::class,
+            LiabilitySeeder::class,
             ClientSeeder::class,
             PromotionSeeder::class,
             SourceSeeder::class,
-            AssetsSeeder::class,
+            AssetSeeder::class,
         ]);
     }
 }

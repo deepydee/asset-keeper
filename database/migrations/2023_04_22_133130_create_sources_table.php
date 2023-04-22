@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sources', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('description')->nullable();
             $table->string('color')->default('#fff');
             $table->time('time');

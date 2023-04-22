@@ -27,7 +27,7 @@ class LiabilityFactory extends Factory
     {
         return [
             'title' => fake()->title,
-            'description' => fake()->faker->text,
+            'description' => fake()->text,
             'category_id' => Category::first(),
         ];
     }
