@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Source;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class SourceFactory extends Factory
 {
+     /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Source::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +25,10 @@ class SourceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->jobTitle,
+            'description' => fake()->realText(),
+            'color' => fake()->hexColor,
+            'time' => fake()->time,
         ];
     }
 }

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function() {
-    Route::get('dashboard', DashboardController::class)->name('dashboard');
+//     Route::get('dashboard', DashboardController::class)->name('dashboard');
 
     Route::get('assets/create/{date}', [AssetController::class, 'create'])
         ->name('assets.create');
