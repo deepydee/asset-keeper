@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\ProductRepositoryContract;
+use App\Http\Resources\CategoryProductResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    // public function __construct(
-    //     private ProductRepositoryContract $productRepository,
-    // ) {}
+    public function __construct(
+        private ProductRepositoryContract $productRepository,
+    ) {}
 
     /**
      * Display a listing of the resource.
@@ -44,21 +46,26 @@ class CategoryController extends Controller
      */
     public function show(Request $request, Category $category)
     {
-        // $products = $this->productRepository->byCategory($category);
+        $products = $this->productRepository->byCategory($category);
 
-        // if($request->wantsJson()) {
-        //     return response()->json([
-        //         'status' => 'success',
-        //         'data' => CategoryProductsResource::collection($products),
-        //     ]);
-        // }
+        // $repo = App::make(ProductRepositoryContract::class);
+        // $repo = App::make(ProductRepository::class);
+        // $repo = App::call(ProductRepository::class, 'method');
+        // можно и так вызывать класс из контейнера зависимостей
 
-        // return view(
-        //     'categories.show',
-        //     compact(
-        //         'products'
-        //     ),
-        // );
+        if($request->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'data' => CategoryProductResource::collection($products),
+            ]);
+        }
+
+        return view(
+            'categories.show',
+            compact(
+                'products'
+            ),
+        );
     }
 
     /**
