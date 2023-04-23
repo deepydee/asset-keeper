@@ -2,11 +2,11 @@
 
 namespace App\Actions;
 
+use App\DTO\FormCreateAssetData;
 use App\Repositories\AssetRepository;
 use App\Repositories\SourceRepository;
 use App\Services\WorkTimeService;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class FormCreateAssetAction
 {
@@ -16,12 +16,12 @@ class FormCreateAssetAction
         protected WorkTimeService $workTimeService,
     ) {}
 
-    public function execute(Request $request): array
+    public function execute(FormCreateAssetData $data): array
     {
         $source = $this->sourceRepository->getAll();
 
-        $startDay = Carbon::parse($request->data)->startOfDay();
-        $endDay = Carbon::parse($request->data)->endOfDay();
+        $startDay = Carbon::parse($data->date)->startOfDay();
+        $endDay = Carbon::parse($data->date)->endOfDay();
 
         $assets = $this->assetRepository->getForDay($startDay, $endDay);
 

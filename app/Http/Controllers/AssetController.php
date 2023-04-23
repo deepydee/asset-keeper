@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Actions\FormCreateAssetAction;
+use App\DTO\FormCreateAssetData;
+use App\Http\Requests\CreateAssetRequest;
+use App\Models\Asset;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -11,17 +14,35 @@ class AssetController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'data' => [
+                    'assets' => Asset::all(),
+                ]
+            ]);
+
+            // return response()->json([
+            //     'status' => 'failed',
+            //     'massage' => 'bad request',
+            // ], 400);
+        }
+
         return view('assets.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request, FormCreateAssetAction $action): View
-    {
-        return view('assets.create', $action->execute($request));
+    public function create(
+        CreateAssetRequest $request,
+        FormCreateAssetAction $action): View {
+
+            $dto = FormCreateAssetData::fromRequest($request);
+
+            return view('assets.create', $action->execute($dto));
     }
 
     /**
