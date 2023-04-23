@@ -25,11 +25,13 @@ class DefaultSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             CategorySeeder::class,
-            LiabilitySeeder::class,
-            ClientSeeder::class,
-            PromotionSeeder::class,
-            SourceSeeder::class,
+            // LiabilitySeeder::class,
+            // ClientSeeder::class,
+            // PromotionSeeder::class,
+            // SourceSeeder::class,
             AssetSeeder::class,
+            ProductSeeder::class,
+            AttributeSeeder::class,
         ]);
     }
 }

@@ -20,28 +20,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::middleware('auth')->group(function() {
-    Route::get('assets/create/{date}', [AssetController::class, 'create'])
-        ->name('assets.create');
-    Route::resource('assets', AssetController::class);
-    Route::resource('liabilities', LiabilityController::class);
-    Route::resource('clients', ClientController::class);
-    Route::resource('promotions', PromotionController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('sources', SourceController::class);
+// Route::middleware('auth')->group(function() {
+//     Route::get('assets/create/{date}', [AssetController::class, 'create'])
+//         ->name('assets.create');
+//     Route::resource('assets', AssetController::class);
+//     Route::resource('liabilities', LiabilityController::class);
+//     Route::resource('clients', ClientController::class);
+//     Route::resource('promotions', PromotionController::class);
+//     Route::resource('categories', CategoryController::class);
+//     Route::resource('sources', SourceController::class);
 
-    Route::view('/dashboard', 'dashboard')->middleware('verified')->name('dashboard');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//     Route::view('/dashboard', 'dashboard')->middleware('verified')->name('dashboard');
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Route::permanentRedirect('{any}', '/dashboard')
-    //     ->where('any', '.*');
-});
+//     // Route::permanentRedirect('{any}', '/dashboard')
+//     //     ->where('any', '.*');
+// });
 
 
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';
+
+Route::get('/categories', [CategoryController::class, 'index'])
+    ->name('categories.index');
+Route::get('/categories/{category}', [CategoryController::class, 'show'])
+    ->name('categories.show');
+
+Route::get('/products/{product}', [ProductController::class, 'show'])
+    ->name('products.show');

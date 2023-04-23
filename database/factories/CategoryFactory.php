@@ -27,8 +27,6 @@ class CategoryFactory extends Factory
         return [
             'title' => fake()->title,
             'description' => fake()->realText(),
-            'color' => fake()->hexColor,
-            'time' => fake()->time,
         ];
     }
 }

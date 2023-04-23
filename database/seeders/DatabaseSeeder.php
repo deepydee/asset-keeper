@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             PromotionSeeder::class,
             SourceSeeder::class,
             AssetSeeder::class,
+            ProductSeeder::class,
+            AttributeSeeder::class,
         ]);
     }
 }

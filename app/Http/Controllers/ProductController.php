@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function show(Product $product): View
     {
-        $user = User::notDeleted()->get();
+        return view(
+            'products.show',
+             compact('product'),
+        );
     }
 }
