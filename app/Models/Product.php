@@ -10,6 +10,12 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'price',
+        'user_id',
+    ];
+
     public function attributes(): BelongsToMany
     {
         return $this->belongsToMany(Attribute::class)

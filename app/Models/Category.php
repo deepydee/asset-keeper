@@ -17,6 +17,11 @@ class Category extends Model
         Sluggable::replicate as replicateSlug;
     }
 
+    protected $fillable = [
+        'title',
+        'parent_id',
+    ];
+
     public function replicate(array $except = null)
     {
         $instance = $this->replicateNode($except);
@@ -29,7 +34,7 @@ class Category extends Model
 
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'id';
     }
 
     public function products(): BelongsToMany

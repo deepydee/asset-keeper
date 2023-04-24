@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->integer('price');
             $table->boolean('deleted')->default(false);
+            // $table->foreignId('category_id')
+            //     ->nullable()
+            //     ->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

@@ -13,12 +13,10 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 class CategoryCriteriaCriteria implements CriteriaInterface
 {
-    private Category $category;
 
-    public function __construct(Category $category)
-    {
-        $this->category = $category;
-    }
+    public function __construct(
+        private Category $category,
+    ) {}
 
     public function apply($model, RepositoryInterface $repository)
     {
